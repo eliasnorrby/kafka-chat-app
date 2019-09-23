@@ -1,0 +1,38 @@
+{
+  "name": "@eliasnorrby/kafka-chat-app",
+  "version": "0.0.0-development",
+  "private": true,
+  "description": "Real time chat demo with Apache Kafka",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "semantic-release": "semantic-release",
+    "check-format": "prettier --list-different '**/*.{js,jsx,ts,tsx,html,vue,css,less,scss,graphql,yaml,yml,json,md,mdx}'",
+    "format": "prettier --write '**/*.{js,jsx,ts,tsx,html,vue,css,less,scss,graphql,yaml,yml,json,md,mdx}'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eliasnorrby/kafka-chat-app.git"
+  },
+  "keywords": ["kafka", "websockets"],
+  "author": "Elias Norrby",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eliasnorrby/kafka-chat-app/issues"
+  },
+  "homepage": "https://github.com/eliasnorrby/kafka-chat-app#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@eliasnorrby/commitlint-config": "^2.0.2",
+    "@eliasnorrby/prettier-config": "^2.1.2",
+    "@eliasnorrby/semantic-release-config": "^2.0.0",
+    "husky": "^3.0.5",
+    "prettier": "^1.18.2",
+    "semantic-release": "^15.13.24"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
