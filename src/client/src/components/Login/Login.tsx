@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { Link, Redirect } from "react-router-dom";
-import { Form, Button, Input } from "semantic-ui-react";
+import { Form, Button, Container, Grid } from "semantic-ui-react";
 
 import { userlist } from "api/userApiMock";
 
@@ -20,7 +20,7 @@ const Login = () => {
   };
 
   return (
-    <>
+    <Container textAlign="center">
       {shouldRedirect && redirect()}
       <h2>Login</h2>
       <p>Who are you?</p>
@@ -30,17 +30,27 @@ const Login = () => {
         </Link>
       ))}
       <h3>New user</h3>
-      <Form onSubmit={e => submit(e)}>
-        <Input
-          placeholder={username || "Username"}
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-        />
-        <Button type="submit" disabled={username === ""}>
-          {username === "" ? "Type a name" : `Proceed as ${username}`}
-        </Button>
-      </Form>
-    </>
+      <Grid>
+        <Grid.Row centered>
+          <Form onSubmit={e => submit(e)}>
+            <Form.Group>
+              <Form.Input
+                placeholder={username || "Username"}
+                value={username}
+                onChange={e => setUsername(e.target.value)}
+              />
+              <Form.Button
+                disabled={username === ""}
+                content={
+                  username === "" ? "Type a name" : `Proceed as ${username}`
+                }
+                width={10}
+              />
+            </Form.Group>
+          </Form>
+        </Grid.Row>
+      </Grid>
+    </Container>
   );
 };
 
