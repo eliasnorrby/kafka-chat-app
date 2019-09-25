@@ -9,6 +9,7 @@ import {
   Divider,
   Grid,
   Label,
+  List,
 } from "semantic-ui-react";
 
 import { toast, ToastContainer } from "react-toastify";
@@ -88,18 +89,19 @@ const Chat = ({ user }: ChatProps) => {
 
   const renderUserList = () => {
     return (
-      <>
+      <Container textAlign="left">
         <Header as="h2">Online users</Header>
-        {users.map(u => (
-          <div key={u.id}>
-            <Label as="a" image>
-              <img alt="avatar" src={u.avatar} />
-              {u.name}
-            </Label>
-            <br />
-          </div>
-        ))}
-      </>
+        <List relaxed>
+          {users.map(u => (
+            <List.Item key={u.id}>
+              <Label color="green" as="a" image>
+                <img alt="avatar" src={u.avatar} />
+                {u.name}
+              </Label>
+            </List.Item>
+          ))}
+        </List>
+      </Container>
     );
   };
 
