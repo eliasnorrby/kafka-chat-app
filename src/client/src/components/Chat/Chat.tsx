@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Container,
   Header,
@@ -15,11 +15,8 @@ import {
 import { toast, ToastContainer } from "react-toastify";
 
 import User from "types/User";
-import Message from "types/Message";
 
 import useChat from "hooks/useChat";
-
-import { newUser } from "api/userApiMock";
 
 interface ChatProps {
   user: User;
@@ -36,15 +33,6 @@ const Chat = ({ user }: ChatProps) => {
     notify,
   );
 
-  /* const messages: Message[] = [];
-   * const [message, setMessage] = useState({
-   *   message: "",
-   *   author: user,
-   *   timestamp: Date.now(),
-   * });
-   * const sendMessage = () => console.log("Message: ", message);
-   * const users: User[] = [newUser("Bob"), newUser("Alice")];
-   */
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     sendMessage();

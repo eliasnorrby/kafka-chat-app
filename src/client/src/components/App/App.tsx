@@ -10,10 +10,6 @@ import Chat from "components/Chat";
 import Login from "components/Login";
 import NotFound from "components/NotFound";
 
-import { newUser } from "api/userApiMock";
-
-const testUser = newUser("Test");
-
 const App = () => {
   return (
     <Router>
