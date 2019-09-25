@@ -16,7 +16,8 @@ const joinChat = (
 };
 
 const leaveChat = user => {
-  socket.off();
+  console.log(`Unsubscribing ${user.name} from all the stuff.`);
+  socket.disconnect();
 };
 
 const subscribeToMessages = (user, callback) => {
