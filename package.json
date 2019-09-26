@@ -5,7 +5,7 @@
   "description": "Real time chat demo with Apache Kafka",
   "main": "index.js",
   "scripts": {
-    "install-ci": "run-p install:*",
+    "install-ci": "npm install && run-p install:*",
     "install:client": "cd src/client && npm install",
     "install:server": "cd src/server && npm install",
     "test": "run-p test:*",
