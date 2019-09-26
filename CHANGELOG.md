@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/eliasnorrby/kafka-chat-app/compare/v1.0.0...v1.1.0) (2019-09-26)
+
+
+### Features
+
+* add quickstart script ([227e9b0](https://github.com/eliasnorrby/kafka-chat-app/commit/227e9b0))
+
 # 1.0.0 (2019-09-26)
 
 
