@@ -1,20 +1,22 @@
 sudo: false
-
-language: "node_js"
-
+language: node_js
 node_js:
   - 8
   - 11
 jobs:
   include:
-    # Define the release stage that runs semantic-release
     - stage: release
       if: branch = master
       node_js: lts/*
-      # Overwrite the default step to skip the tests
       script: skip
       deploy:
         provider: script
         skip_cleanup: true
         script:
           - npx semantic-release
+notifications:
+  slack:
+    rooms:
+      - secure: gK5nRppUzpBvt+VCxwJHRYzXR9QdSqQYyfvEonQiqBGDyo8KVeQN6U3Ad2c5p7iOosTR6I7FWthbMwYnYyoJG6pIYW5jb+v5HDfldwDhhTlJ/PqUNEL1NDzaoaYCh8Zv8s7kM37A4awRYptvif5G1fOMsg3bOYhNWhtdzbTusRdUVPRVvdagQFQ6PX5ljZo+CwbTPB4nyzKcHhC1HqCCjPnWplpq+SSbUYqVY1TQtO7KRUTnoRUxU1KAd390+47wCBGOdmzIpI8T+ayTIoxf+OYXBBBxHCm6NQ6o5f+XmvI8k+MkKCY2S+ntRxgtmSQDM0fPvndRHJy6HMGCotum6EFL/SXHVEAJ+FqnZyK5LB2sLkOPyZ13/gxzLKzZXKJranLlTZcQLb5wid11INnexIIpO7wdcDv2yai0Kd8D0ew0hQqOl519h2xEhTxVHlFxoqc3bALydktk1lKDjBfM5Vh6K0XPEeDYONpKHi5vZysIP/JvavG2GpvHW2mka5RcLp4rKQVCkOkifnvU5Hth0ODPcOBJ4GHTfCBH/51O1PMDMAKeVchOl0+Rjskn0JQXmY5pvNc0YD7oCtuzuX47oeFE9TK2a1LimTcPd/kHVhHAlYrNuyTfQHbeQk6q3ZwVZXQXmdDrqRLYcSZy7wI3FmrahH8gJDViF9IiB1Jqdpk=
+    template:
+      - "Build <%{build_url}|%{result}> for %{repository_slug}@%{branch} (<%{compare_url}|%{commit}>)"
