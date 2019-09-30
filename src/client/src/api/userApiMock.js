@@ -3,7 +3,7 @@ const uuidv4 = require("uuid/v4");
 const avatarUrl = name =>
   `https://react.semantic-ui.com/images/avatar/small/${name.toLowerCase()}.jpg`;
 
-export const randomAvatar = () =>
+const randomAvatar = () =>
   avatarUrl(namelist[Math.floor(Math.random() * namelist.length)]);
 
 export const newUser = name => {

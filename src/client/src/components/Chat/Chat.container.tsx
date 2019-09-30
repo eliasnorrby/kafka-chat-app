@@ -6,7 +6,7 @@ import User from "types/User";
 
 import Chat from "./Chat";
 
-import { userlist, randomAvatar, uuidv4 } from "api/userApiMock";
+import { userlist, newUser } from "api/userApiMock";
 
 interface ChatProps {
   id: string;
@@ -18,11 +18,7 @@ const ChatContainer = ({ match }: RouteComponentProps<ChatProps>) => {
 
   if (!user) {
     console.log(`User ${name} does not exist`);
-    user = {
-      name,
-      avatar: randomAvatar(),
-      id: uuidv4(),
-    };
+    user = newUser(name);
   }
   return <Chat user={user} />;
 };
