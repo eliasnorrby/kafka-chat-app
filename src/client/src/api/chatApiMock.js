@@ -41,6 +41,12 @@ const leaveChat = user => {
   socket.disconnect();
 };
 
+const reconnectToChat = user => {
+  log(`Reconnecting ${user.name} to the chat.`);
+  socket.connect();
+  socket.emit("joinChat", user);
+};
+
 const subscribeToMessages = (user, callback) => {
   log(`Subscribing ${user.name} client to new messages`);
 
@@ -72,4 +78,4 @@ const dispatchMessage = msg => {
   socket.emit("sendMessage", msg);
 };
 
-export { joinChat, leaveChat, dispatchMessage };
+export { joinChat, leaveChat, reconnectToChat, dispatchMessage };
