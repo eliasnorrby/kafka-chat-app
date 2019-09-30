@@ -4,43 +4,56 @@ var io = require("socket.io")(http);
 
 const connections = {};
 
+const log = msg => {
+  const now = new Date();
+  const time = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+  console.log(`SERVER [${time}]: ${msg}`);
+};
+
 const getUsers = () => {
   return Object.keys(connections).map(id => connections[id]);
 };
 
 io.on("connection", client => {
-  console.log("A client connected!");
+  log("A client connected!");
 
   client.on("joinChat", user => {
-    console.log(`User ${user.name} joined the chat`);
+    log(`User ${user.name} joined the chat`);
 
+    log(`USERS BEFORE: ${getUsers().length}`);
     connections[client.id] = user;
+    log(`USERS AFTER: ${getUsers().length}`);
 
     client.broadcast.emit("userJoinedChat", user.name);
     io.emit("updateUsers", getUsers());
   });
 
-  client.on("disconnect", () => {
-    console.log("A client disconnected!");
+  client.on("leaveChat", user => {
+    log(`User ${user.name} left the chat`);
+
+    client.broadcast.emit("userLeftChat", user.name);
+    io.emit("updateUsers", getUsers());
+  });
+
+  client.on("disconnect", reason => {
+    log(`A client disconnected! Reason: ${reason}`);
     const name = connections[client.id]
       ? connections[client.id].name
       : "UNKNOWN";
 
-    console.log(`User ${name} left the chat`);
+    log(`User ${name} left the chat`);
 
-    const usersBefore = getUsers();
-    console.log(`LENGTH BEFORE: `, usersBefore.length);
+    log(`USERS BEFORE: ${getUsers().length}`);
     delete connections[client.id];
-    const usersAfter = getUsers();
-    console.log(`LENGTH AFTER: `, usersAfter.length);
+    log(`USERS AFTER: ${getUsers().length}`);
 
     client.broadcast.emit("userLeftChat", name);
-    io.emit("updateUsers", usersAfter);
+    io.emit("updateUsers", getUsers());
   });
 
   client.on("sendMessage", msg => {
     const { author, message } = msg;
-    console.log(`User ${author.name} sent message "${message}"`);
+    log(`User ${author.name} sent message "${message}"`);
     io.emit("newMessage", msg);
   });
 });
@@ -48,5 +61,5 @@ io.on("connection", client => {
 const port = 8000;
 
 http.listen(port, () => {
-  console.log(`listening on *:${port}`);
+  log(`listening on *:${port}`);
 });
