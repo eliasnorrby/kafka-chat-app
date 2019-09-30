@@ -2,6 +2,12 @@ import openSocket from "socket.io-client";
 
 let socket;
 
+const log = msg => {
+  const now = new Date();
+  const time = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+  console.log(`CHAT_API [${time}]: ${msg}`);
+};
+
 const joinChat = (
   user,
   messageCallback,
@@ -13,15 +19,30 @@ const joinChat = (
   subscribeToMessages(user, messageCallback);
   subscribeToUserList(user, userListCallback);
   subscribeToUserEvents(user, userEventCallback);
+
+  const eventsToLog = [
+    "connect_error",
+    "connect_timeout",
+    "reconnect",
+    "reconnecting",
+    "reconnect_attempt",
+    "reconnect_error",
+    "disconnect",
+    "error",
+  ];
+
+  eventsToLog.map(event =>
+    socket.on(event, arg => log(`NEW_EVENT: '${event}', arg: ${arg}`)),
+  );
 };
 
 const leaveChat = user => {
-  console.log(`Unsubscribing ${user.name} from all the stuff.`);
+  log(`Unsubscribing ${user.name} from all the stuff.`);
   socket.disconnect();
 };
 
 const subscribeToMessages = (user, callback) => {
-  console.log(`Subscribing ${user.name} client to new messages`);
+  log(`Subscribing ${user.name} client to new messages`);
 
   socket.on("newMessage", msg => {
     callback(null, msg);
@@ -35,7 +56,7 @@ const subscribeToUserList = (user, callback) => {
 };
 
 const subscribeToUserEvents = (user, callback) => {
-  console.log(`Subscribing ${user.name} client to user events`);
+  log(`Subscribing ${user.name} client to user events`);
 
   socket.on("userJoinedChat", name => {
     callback(null, name, "joined");
@@ -47,7 +68,7 @@ const subscribeToUserEvents = (user, callback) => {
 };
 
 const dispatchMessage = msg => {
-  console.log("Emitting sendMessage event...");
+  log("Emitting sendMessage event...");
   socket.emit("sendMessage", msg);
 };
 
