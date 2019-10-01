@@ -29,18 +29,22 @@ const useChat = (user: User, notify: (notification: string) => void): Chat => {
   });
   const [users, setUsers] = useState<User[]>([]);
 
-  const messageCallback = (err: Error, msg: Message) => {
+  const messageCallback = (err: Error | null, msg: Message) => {
     if (err) console.log("There was an error: ", err);
     setMessages(msgs => msgs.concat(msg));
   };
 
-  const userListCallback = (err: Error, newList: User[]) => {
+  const userListCallback = (err: Error | null, newList: User[]) => {
     if (err) console.trace("There was an error: ", err);
     console.log("New list of users: ", newList);
     setUsers(newList);
   };
 
-  const userEventCallback = (err: Error, name: string, action: string) => {
+  const userEventCallback = (
+    err: Error | null,
+    name: string,
+    action: string,
+  ) => {
     if (err) console.trace("There was an error: ", err);
     notify(`${name} ${action} the chat!`);
   };

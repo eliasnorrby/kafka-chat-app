@@ -1,12 +1,12 @@
-const uuidv4 = require("uuid/v4");
+import uuidv4 from "uuid/v4";
 
-const avatarUrl = name =>
+const avatarUrl = (name: string) =>
   `https://react.semantic-ui.com/images/avatar/small/${name.toLowerCase()}.jpg`;
 
 const randomAvatar = () =>
   avatarUrl(namelist[Math.floor(Math.random() * namelist.length)]);
 
-export const newUser = name => {
+export const newUser = (name: string) => {
   return {
     name,
     avatar: randomAvatar(),
