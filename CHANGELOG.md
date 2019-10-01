@@ -1,3 +1,21 @@
+# [1.2.0](https://github.com/eliasnorrby/kafka-chat-app/compare/v1.1.0...v1.2.0) (2019-10-01)
+
+
+### Bug Fixes
+
+* make 'npm start' start server and client ([8e779ba](https://github.com/eliasnorrby/kafka-chat-app/commit/8e779ba))
+
+
+### Features
+
+* add disconnect and reconnect methods to api ([ad65563](https://github.com/eliasnorrby/kafka-chat-app/commit/ad65563))
+
+
+### Performance Improvements
+
+* improve logging in chat api ([705f183](https://github.com/eliasnorrby/kafka-chat-app/commit/705f183))
+* improve logging in server ([2c42735](https://github.com/eliasnorrby/kafka-chat-app/commit/2c42735))
+
 # [1.1.0](https://github.com/eliasnorrby/kafka-chat-app/compare/v1.0.0...v1.1.0) (2019-09-26)
 
 
