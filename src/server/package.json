@@ -5,14 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"No tests for server, but that is fine.\"",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "start:kafka": "nodemon kafka-app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/kafka-node": "^2.0.9",
     "@types/socket.io": "^2.1.3",
     "express": "^4.17.1",
+    "kafka-node": "^4.1.3",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
