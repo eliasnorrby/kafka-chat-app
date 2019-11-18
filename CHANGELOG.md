@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/eliasnorrby/kafka-chat-app/compare/v1.2.0...v1.3.0) (2019-11-18)
+
+
+### Features
+
+* attach kafka ([6072c19](https://github.com/eliasnorrby/kafka-chat-app/commit/6072c19))
+
 # [1.2.0](https://github.com/eliasnorrby/kafka-chat-app/compare/v1.1.0...v1.2.0) (2019-10-01)
 
 
