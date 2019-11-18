@@ -10,3 +10,8 @@ is pushed to a web client using websockets.
 Clone the repo and run `npm run quickstart`. This installs all dependencies and
 starts the development server. Open a few browser tabs pointing to
 `localhost:3000` and start chatting.
+
+## Disclaimer
+
+The 'kafka' part of the `kafka-chat-app` is not really ready. For now, the messages are 
+only transmitted using websockets.
